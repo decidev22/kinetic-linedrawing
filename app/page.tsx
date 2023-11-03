@@ -45,7 +45,7 @@ export default function Home() {
         />
         <DrawCanvas
           canvasId="draw"
-          duration={500}
+          duration={600}
           randomMax={500}
           filepath={filepath}
         />
