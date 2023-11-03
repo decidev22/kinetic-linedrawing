@@ -2,7 +2,6 @@
 import Image from "next/image";
 import DrawCanvas from "@/components/drawlines";
 import { useState } from "react";
-import { reload } from "firebase/auth";
 
 export default function Home() {
   const [filepath, setFilepath] = useState("/monet_waterlilies.png");
