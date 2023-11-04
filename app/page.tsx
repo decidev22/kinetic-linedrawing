@@ -42,24 +42,46 @@ export default function Home() {
           width={500}
           height={500}
         />
-        <DrawCanvas
-          canvasId="draw"
-          duration={600}
-          randomMax={500}
-          filepath={filepath}
-        />
+        <div className="relative w-[500px] h-[500px]">
+          <DrawCanvas
+            canvasId="draw"
+            duration={1200}
+            randomMax={500}
+            filepath={filepath}
+            quarter="q1"
+          />
+          <DrawCanvas
+            canvasId="draw"
+            duration={1200}
+            randomMax={500}
+            filepath={filepath}
+            quarter="q2"
+          />
+          <DrawCanvas
+            canvasId="draw"
+            duration={1200}
+            randomMax={500}
+            filepath={filepath}
+            quarter="q3"
+          />
+          <DrawCanvas
+            canvasId="draw"
+            duration={1200}
+            randomMax={500}
+            filepath={filepath}
+            quarter="q4"
+          />
+        </div>
       </div>
 
       <div className="mb-20 mt-5">
         <div className="grid grid-cols-4 gap-4 justify-items-center px-20">
           <div>
             <img
-              src="/monet_waterlilies.png"
+              src="/monet_500.png"
               alt="Monet"
               width={150}
-              onClick={() =>
-                triggerImageFunction("/monet_waterlilies.png")
-              }
+              onClick={() => triggerImageFunction("/monet_500.png")}
               style={{ cursor: "pointer" }}
             />
           </div>
@@ -74,21 +96,23 @@ export default function Home() {
           </div>
           <div>
             <img
-              src="/starrynight.jpeg"
+              src="/starrynight_500.png"
               alt="Van Gogh"
               width={150}
               onClick={() =>
-                triggerImageFunction("/starrynight.jpeg")
+                triggerImageFunction("/starrynight_500.png")
               }
               style={{ cursor: "pointer" }}
             />
           </div>
           <div>
             <img
-              src="/vangogh2.png"
+              src="/vangogh_2_500.png"
               alt="Van Gogh 2"
               width={150}
-              onClick={() => triggerImageFunction("/vangogh2.png")}
+              onClick={() =>
+                triggerImageFunction("/vangogh_2_500.png")
+              }
               style={{ cursor: "pointer" }}
             />
           </div>

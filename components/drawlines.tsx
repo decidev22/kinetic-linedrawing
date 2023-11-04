@@ -8,6 +8,7 @@ type DrawCanvasProps = {
   duration: number;
   randomMax: number;
   filepath: string;
+  quarter: string;
 };
 
 const DrawCanvas: React.FC<DrawCanvasProps> = ({
@@ -15,6 +16,7 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
   duration,
   randomMax,
   filepath,
+  quarter,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -26,22 +28,44 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
       if (ctx) {
         let xpos = 0;
         let ypos = 0;
+        if (quarter === "q4") {
+          xpos = 500;
+          ypos = 500;
+        }
+
         let color = "white";
         let previousColor = "white";
         let mid_color = "";
         let mid_color2 = "";
         let mid_color3 = "";
-
+        let proximity_rand_xpos = 0;
+        let proximity_rand_ypos = 0;
         let previous_filepath = "";
 
-        const generateRandNumber = (max: number) => {
-          return Math.floor(Math.random() * max);
+        const generateRandNumber = (min: number, max: number) => {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
         };
 
         ctx.beginPath();
+        let random_start_xpos = 0;
+        let random_start_ypos = 0;
+        if (quarter === "q1") {
+          random_start_xpos = generateRandNumber(0, 250);
+          random_start_ypos = generateRandNumber(0, 250);
+        }
+        if (quarter === "q2") {
+          random_start_xpos = generateRandNumber(250, 500);
+          random_start_ypos = generateRandNumber(0, 250);
+        }
+        if (quarter === "q3") {
+          random_start_xpos = generateRandNumber(0, 250);
+          random_start_ypos = generateRandNumber(250, 500);
+        }
+        if (quarter === "q4") {
+          random_start_xpos = generateRandNumber(250, 501);
+          random_start_ypos = generateRandNumber(250, 501);
+        }
 
-        let random_start_xpos = generateRandNumber(501);
-        let random_start_ypos = generateRandNumber(501);
         ctx.moveTo(random_start_xpos, random_start_ypos);
 
         let iteration = 0;
@@ -52,8 +76,29 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
 
         const draw = async () => {
           if (iteration < duration) {
-            xpos = generateRandNumber(randomMax);
-            ypos = generateRandNumber(randomMax);
+            // new xpos ypos in 50 range to previous.
+
+            if (quarter === "q1") {
+              proximity_rand_xpos = generateRandNumber(0, 270);
+              proximity_rand_ypos = generateRandNumber(0, 270);
+            }
+            if (quarter === "q2") {
+              proximity_rand_xpos = generateRandNumber(230, 500);
+              proximity_rand_ypos = generateRandNumber(0, 270);
+            }
+            if (quarter === "q3") {
+              proximity_rand_xpos = generateRandNumber(0, 270);
+              proximity_rand_ypos = generateRandNumber(230, 500);
+            }
+            if (quarter === "q4") {
+              proximity_rand_xpos = generateRandNumber(230, 500);
+              proximity_rand_ypos = generateRandNumber(230, 500);
+            }
+
+            xpos = proximity_rand_xpos;
+            ypos = proximity_rand_ypos;
+            // xpos = generateRandNumber(randomMax);
+            // ypos = generateRandNumber(randomMax);
 
             // if filepath changed, clear the canvas
             if (previous_filepath != filepath) {
@@ -133,7 +178,7 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
             previous_filepath = filepath;
 
             iteration++;
-            setTimeout(draw, 10);
+            setTimeout(draw, 2);
           }
         };
         draw();
@@ -142,7 +187,7 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
   }, [duration, randomMax, filepath]);
 
   return (
-    <div>
+    <div className="absolute">
       <canvas ref={canvasRef} width={500} height={500}></canvas>
     </div>
   );
