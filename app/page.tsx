@@ -4,7 +4,7 @@ import DrawCanvas from "@/components/drawlines";
 import { useState } from "react";
 
 export default function Home() {
-  const [filepath, setFilepath] = useState("/monet_waterlilies.png");
+  const [filepath, setFilepath] = useState("/monet_500.png");
   const triggerImageFunction = (newfilepath: string) => {
     setFilepath(newfilepath);
     console.log(filepath);
