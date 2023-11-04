@@ -170,6 +170,7 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
             ctx.beginPath();
             ctx.moveTo(previous_xpos, previous_ypos);
             ctx.lineTo(xpos, ypos);
+            ctx.lineWidth = 1;
             ctx.stroke();
 
             previous_xpos = xpos;
@@ -178,7 +179,8 @@ const DrawCanvas: React.FC<DrawCanvasProps> = ({
             previous_filepath = filepath;
 
             iteration++;
-            setTimeout(draw, 2);
+            // setTimeout(draw, 2);
+            draw();
           }
         };
         draw();
