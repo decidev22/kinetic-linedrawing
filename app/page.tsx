@@ -2,7 +2,6 @@
 import Image from "next/image";
 import DrawCanvas from "@/components/drawlines";
 import { useState } from "react";
-import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
   const [filepath, setFilepath] = useState("/monet_500.png");
@@ -119,7 +118,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Analytics />
     </main>
   );
 }
