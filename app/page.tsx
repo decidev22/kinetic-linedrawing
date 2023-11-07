@@ -45,21 +45,21 @@ export default function Home() {
         <div className="relative w-[500px] h-[500px]">
           <DrawCanvas
             canvasId="draw"
-            duration={1000}
+            duration={1200}
             randomMax={500}
             filepath={filepath}
             quarter="q1"
           />
           <DrawCanvas
             canvasId="draw"
-            duration={1000}
+            duration={1200}
             randomMax={500}
             filepath={filepath}
             quarter="q2"
           />
           <DrawCanvas
             canvasId="draw"
-            duration={1000}
+            duration={1200}
             randomMax={500}
             filepath={filepath}
             quarter="q3"
